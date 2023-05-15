@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/syabdulr/tinyapp/issues"
   },
-  "homepage": "https://github.com/syabdulr/tinyapp#readme"
+  "homepage": "https://github.com/syabdulr/tinyapp#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
