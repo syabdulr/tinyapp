@@ -36,9 +36,12 @@ app.get("/urls", (req, res) => {
   res.render("urls_index", templateVars); // Render the "urls_index.ejs" template with the provided data
 });
 
+// this route handler handles form submission (post request)
 app.post("/urls", (req, res) => {
-  console.log(req.body); // Log the POST request body to the console
-  res.send("Ok"); // Respond with 'Ok' (we will replace this)
+  const shortURL = generateRandomString();
+  const longURL = req.body.longURL;
+  urlDatabase[shortURL] = longURL;
+  res.redirect(`/urls/${shortURL}`); // in the http line, new url
 });
 
 app.get("/urls/new", (req, res) => {
