@@ -38,6 +38,7 @@ app.get("/urls", (req, res) => {
 
 // Route handler for form submission to create a new URL
 app.post("/urls", (req, res) => {
+  console.log("inside creation");
   const shortURL = generateRandomString(); // Generate a random short URL
   const longURL = req.body.longURL; // Get the long URL from the form submission
   urlDatabase[shortURL] = longURL; // Store the long URL in the database with the short URL as the key
@@ -64,11 +65,18 @@ app.get("/u/:id", (req, res) => {
   res.redirect(longURL); // Redirect the user to the long URL
 });
 
+app.post("/urls/:id", (req,res) => { //edit 
+  const id = req.params.id;
+  urlDatabase[id] = req.body.longURL;
+  res.redirect('/urls'); 
+});
+
 app.post("/urls/:id/delete", (req,res) => {
   const id = req.params.id;
   delete urlDatabase[id];
   res.redirect('/urls');
 });
+
 
 // Start the server
 app.listen(PORT, () => {
