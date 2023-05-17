@@ -127,7 +127,13 @@ app.post("/logout", (req, res) => {
 app.get('/register', function(req, res) {
   const user_Id = req.cookies.user_id;  // assuming user information is stored in session
   const user = users[user_Id];
-  res.render('register', { user });
+
+  if(user){
+    res.redirect("/urls");
+  } else {
+    res.render('register', { user });
+  }
+
 });
 
 
@@ -171,8 +177,16 @@ app.post("/register", (req, res) => {
 app.get("/login", (req, res) => {
   const userId = req.cookies.user_id;
   const user = users[userId];
-  res.render("login", { user });  // Render the "login.ejs" template
+
+  // If the user is logged in, redirect to /urls
+  if (user) {
+    res.redirect("/urls");
+  } else {
+    // If the user is not logged in, render the login page
+    res.render("login", { user });
+  }
 });
+
 
 app.post("/login", (req, res) => {
   const email = req.body.email;
