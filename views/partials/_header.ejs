@@ -13,23 +13,24 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav mr-auto"> <!--mr-auto makes the form go to the right-->
+      <div class="navbar-nav mr-auto">
         <a class="nav-item nav-link" href="/urls">My URLs</a>
         <a class="nav-item nav-link" href="/urls/new">Create New URL</a>
       </div>
-      <% if(user){ %> <!--Check if user.email is present -->
-        Logged in as: <%=user.email%> <!-- Display user name -->
-        <form action="/logout" method="POST" class="form-inline my-2 my-lg-0">
-          <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">
+      <% if(user){ %>
+        <span class="mr-2">Logged in as: <%=user.email%></span>
+        <form action="/logout" method="POST" class="form-inline mr-2 my-lg-0">
+          <button class="btn btn-danger mr-2" type="submit">
             Logout
           </button> 
         </form>
-     <% } else { %> <!-- Check if user.email is not present -->
+     <% } else { %>
       <div class="form-inline my-2 my-lg-0">
-        <a class="nav-item nav-link" href="/login">Login</a>
-        <a class="nav-item nav-link" href="/register">Register</a>
-      </div>
-      <% } %>
+        <!-- Add button and margins to make it look spaced a bit-->
+        <a class="btn btn-primary mr-2" href="/login">Login</a>
+        <a class="btn btn-primary" href="/register">Register</a>
+    </div>
+    <% } %>    
     </div>
   </nav>
 </header>
